@@ -2,56 +2,125 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>VR Art Show</title>
-    <!-- Load A-Frame -->
+    <title>Gifford VR Gallery</title>
+    <!-- Load A-Frame (choose a stable version) -->
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <!--
-      Note: You can update the version number above to the latest A-Frame release.
-      As of this writing, 1.4.2 is a stable version.
-    -->
   </head>
   <body>
     <a-scene>
-      <!-- Asset Management -->
+      <!-- Preload your images in the assets management system -->
       <a-assets>
-        <!-- Preload the artwork image so it can be applied as a texture -->
         <img
-          id="art"
+          id="golden-calm"
+          src="assets/golden-calm-watercolor.png"
+          crossorigin="anonymous"
+          alt="Golden Calm Watercolor"
+        />
+        <img
+          id="leclat"
+          src="assets/leclat-unfolded-ecstatic-engery.png"
+          crossorigin="anonymous"
+          alt="Leclat Unfolded Ecstatic Energy"
+        />
+        <img
+          id="raging-blue"
+          src="assets/raging-blue-ocean.png"
+          crossorigin="anonymous"
+          alt="Raging Blue Ocean"
+        />
+        <img
+          id="water-wind-man"
           src="assets/water_wind_and_man_unfolded.png"
           crossorigin="anonymous"
-          alt="Water Wind and Man Unfolded"
+          alt="Water, Wind and Man"
         />
+        <audio id="bg-sound" src="assets/background.mp3" preload="auto"></audio>
       </a-assets>
 
-      <!-- Camera with look-controls for VR headset and mouse drag -->
+      <!-- Camera with look-controls -->
       <a-entity
         id="camera"
         camera
-        look-controls
         position="0 1.6 0"
+        look-controls
       ></a-entity>
 
-      <!-- Simple ambient and directional lighting -->
-      <a-entity light="type: ambient; color: #FFFFFF; intensity: 0.5"></a-entity>
+      <!-- Play background sound on an invisible entity -->
+      <a-entity
+      sound="src: #bg-sound; autoplay: true; loop: true; volume: 0.5"
+      ></a-entity>
+
+      <!-- Lights: ambient + directional for simple illumination -->
+      <a-entity
+        light="type: ambient; color: #FFFFFF; intensity: 0.5"
+      ></a-entity>
       <a-entity
         light="type: directional; color: #FFFFFF; intensity: 0.7"
         position="0 3 2"
       ></a-entity>
 
-      <!-- The rectangular plane displaying the artwork -->
       <!-- 
-        Dimensions: 
-          - width = 1
-          - height = 1.4 (approx 736 / 525 = ~1.4 to maintain aspect ratio)
-        Positioned 2 meters in front of the camera, at eye-level (y=1.4).
+        Display each painting at a certain position.
+        We're using width=1 for all planes and adjusting height 
+        according to the aspect ratio of each image:
+        
+        1) golden-calm-watercolor.png -> 980 x 733 (~0.75 ratio)
+        2) leclat-unfolded-ecstatic-engery.png -> 524 x 734 (~1.40 ratio)
+        3) raging-blue-ocean.png -> 982 x 735 (~0.75 ratio)
+        4) water_wind_and_man_unfolded.png -> 525 x 736 (~1.40 ratio)
       -->
+
+      <!-- Golden Calm Watercolor (width=1, height=0.75) -->
       <a-plane
-        position="0 1.4 -2"
-        rotation="0 0 0"
+        position="-2.25 1.5 -3"
+        width="1"
+        height="0.75"
+        material="src: #golden-calm; color: #FFFFFF"
+      ></a-plane>
+      <!-- Label -->
+      <a-entity
+        text="value: Golden Calm Watercolor; align: center; width: 2"
+        position="-2.25 0.6 -3"
+      ></a-entity>
+
+      <!-- Leclat Unfolded Ecstatic Energy (width=1, height=1.4) -->
+      <a-plane
+        position="-0.75 1.5 -3"
         width="1"
         height="1.4"
-        material="src: #art; color: #FFFFFF"
+        material="src: #leclat; color: #FFFFFF"
       ></a-plane>
+      <!-- Label -->
+      <a-entity
+        text="value: Leclat Unfolded Ecstatic Energy; align: center; width: 2"
+        position="-0.75 0.3 -3"
+      ></a-entity>
+
+      <!-- Raging Blue Ocean (width=1, height=0.75) -->
+      <a-plane
+        position="0.75 1.5 -3"
+        width="1"
+        height="0.75"
+        material="src: #raging-blue; color: #FFFFFF"
+      ></a-plane>
+      <!-- Label -->
+      <a-entity
+        text="value: Raging Blue Ocean; align: center; width: 2"
+        position="0.75 0.6 -3"
+      ></a-entity>
+
+      <!-- Water, Wind and Man (width=1, height=1.4) -->
+      <a-plane
+        position="2.25 1.5 -3"
+        width="1"
+        height="1.4"
+        material="src: #water-wind-man; color: #FFFFFF"
+      ></a-plane>
+      <!-- Label -->
+      <a-entity
+        text="value: Water, Wind and Man; align: center; width: 2"
+        position="2.25 0.3 -3"
+      ></a-entity>
 
       <!-- A simple floor -->
       <a-plane
