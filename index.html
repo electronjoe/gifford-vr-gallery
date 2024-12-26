@@ -37,17 +37,12 @@
         <audio id="bg-sound" src="assets/background.mp3" preload="auto"></audio>
       </a-assets>
 
-      <!-- Camera with look-controls -->
-      <a-entity
-        id="camera"
-        camera
-        position="0 1.6 0"
-        look-controls
-      ></a-entity>
+      <!-- Camera with look-controls in the center -->
+      <a-entity id="camera" camera position="0 1.6 0" look-controls></a-entity>
 
       <!-- Play background sound on an invisible entity -->
       <a-entity
-      sound="src: #bg-sound; autoplay: true; loop: true; volume: 0.5"
+        sound="src: #bg-sound; autoplay: true; loop: true; volume: 0.5"
       ></a-entity>
 
       <!-- Lights: ambient + directional for simple illumination -->
@@ -60,66 +55,64 @@
       ></a-entity>
 
       <!-- 
-        Display each painting at a certain position.
-        We're using width=1 for all planes and adjusting height 
-        according to the aspect ratio of each image:
-        
-        1) golden-calm-watercolor.png -> 980 x 733 (~0.75 ratio)
-        2) leclat-unfolded-ecstatic-engery.png -> 524 x 734 (~1.40 ratio)
-        3) raging-blue-ocean.png -> 982 x 735 (~0.75 ratio)
-        4) water_wind_and_man_unfolded.png -> 525 x 736 (~1.40 ratio)
+        The four paintings are arranged around the viewer. 
+        Note the rotations so each painting faces inward.
       -->
 
-      <!-- Golden Calm Watercolor (width=1, height=0.75) -->
+      <!-- 1) Golden Calm Watercolor: Front (z = -3) -->
       <a-plane
-        position="-2.25 1.5 -3"
+        position="0 1.5 -3"
+        rotation="0 0 0"
         width="1"
         height="0.75"
         material="src: #golden-calm; color: #FFFFFF"
       ></a-plane>
-      <!-- Label -->
       <a-entity
         text="value: Golden Calm Watercolor; align: center; width: 2"
-        position="-2.25 0.6 -3"
+        position="0 0.6 -3"
+        rotation="0 0 0"
       ></a-entity>
 
-      <!-- Leclat Unfolded Ecstatic Energy (width=1, height=1.4) -->
+      <!-- 2) Leclat Unfolded Ecstatic Energy: Back (z = 3) -->
       <a-plane
-        position="-0.75 1.5 -3"
+        position="0 1.5 3"
+        rotation="0 180 0"
         width="1"
         height="1.4"
         material="src: #leclat; color: #FFFFFF"
       ></a-plane>
-      <!-- Label -->
       <a-entity
         text="value: Leclat Unfolded Ecstatic Energy; align: center; width: 2"
-        position="-0.75 0.3 -3"
+        position="0 0.3 3"
+        rotation="0 180 0"
       ></a-entity>
 
-      <!-- Raging Blue Ocean (width=1, height=0.75) -->
+      <!-- 3) Raging Blue Ocean: Left (x = -3) -->
       <a-plane
-        position="0.75 1.5 -3"
+        position="-3 1.5 0"
+        rotation="0 90 0"
         width="1"
         height="0.75"
         material="src: #raging-blue; color: #FFFFFF"
       ></a-plane>
-      <!-- Label -->
       <a-entity
         text="value: Raging Blue Ocean; align: center; width: 2"
-        position="0.75 0.6 -3"
+        position="-3 0.6 0"
+        rotation="0 90 0"
       ></a-entity>
 
-      <!-- Water, Wind and Man (width=1, height=1.4) -->
+      <!-- 4) Water, Wind and Man: Right (x = 3) -->
       <a-plane
-        position="2.25 1.5 -3"
+        position="3 1.5 0"
+        rotation="0 -90 0"
         width="1"
         height="1.4"
         material="src: #water-wind-man; color: #FFFFFF"
       ></a-plane>
-      <!-- Label -->
       <a-entity
         text="value: Water, Wind and Man; align: center; width: 2"
-        position="2.25 0.3 -3"
+        position="3 0.3 0"
+        rotation="0 -90 0"
       ></a-entity>
 
       <!-- A simple floor -->
