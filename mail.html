@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>VR Art Show</title>
+    <!-- Load A-Frame -->
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <!--
+      Note: You can update the version number above to the latest A-Frame release.
+      As of this writing, 1.4.2 is a stable version.
+    -->
+  </head>
+  <body>
+    <a-scene>
+      <!-- Asset Management -->
+      <a-assets>
+        <!-- Preload the artwork image so it can be applied as a texture -->
+        <img
+          id="art"
+          src="assets/water_wind_and_man_unfolded.png"
+          crossorigin="anonymous"
+          alt="Water Wind and Man Unfolded"
+        />
+      </a-assets>
+
+      <!-- Camera with look-controls for VR headset and mouse drag -->
+      <a-entity
+        id="camera"
+        camera
+        look-controls
+        position="0 1.6 0"
+      ></a-entity>
+
+      <!-- Simple ambient and directional lighting -->
+      <a-entity light="type: ambient; color: #FFFFFF; intensity: 0.5"></a-entity>
+      <a-entity
+        light="type: directional; color: #FFFFFF; intensity: 0.7"
+        position="0 3 2"
+      ></a-entity>
+
+      <!-- The rectangular plane displaying the artwork -->
+      <!-- 
+        Dimensions: 
+          - width = 1
+          - height = 1.4 (approx 736 / 525 = ~1.4 to maintain aspect ratio)
+        Positioned 2 meters in front of the camera, at eye-level (y=1.4).
+      -->
+      <a-plane
+        position="0 1.4 -2"
+        rotation="0 0 0"
+        width="1"
+        height="1.4"
+        material="src: #art; color: #FFFFFF"
+      ></a-plane>
+
+      <!-- A simple floor -->
+      <a-plane
+        rotation="-90 0 0"
+        width="100"
+        height="100"
+        color="#CCCCCC"
+      ></a-plane>
+
+      <!-- Light gray sky backdrop -->
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+  </body>
+</html>
